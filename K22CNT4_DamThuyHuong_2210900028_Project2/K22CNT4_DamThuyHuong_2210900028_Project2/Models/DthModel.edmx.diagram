@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bd42de9e4eca4d61b2ab24ee79f2876c" Name="Diagram1">
+        <EntityTypeShape EntityType="DthModel.banner" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DthModel.chiTietDonHang" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DthModel.danhGia" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DthModel.danhMuc" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DthModel.donHang" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DthModel.khachHang" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DthModel.quanTri" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DthModel.sanPham" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DthModel.sysdiagram" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="DthModel.FK__chiTietDo__maDon__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="DthModel.FK__chiTietDo__maSan__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="DthModel.FK__danhGia__maKhach__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="DthModel.FK__danhGia__maSanPh__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="DthModel.FK__danhMuc__maDanhM__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="DthModel.FK__sanPham__maDanhM__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="DthModel.FK__donHang__maKhach__71D1E811" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

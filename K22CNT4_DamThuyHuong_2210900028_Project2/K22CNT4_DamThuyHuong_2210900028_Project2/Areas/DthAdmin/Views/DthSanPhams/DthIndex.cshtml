@@ -1,0 +1,65 @@
+﻿@model IEnumerable<K22CNT4_DamThuyHuong_2210900028_Project2.Models.sanPham>
+
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Areas/DthAdmin/Views/Shared/_layoutAdmin.cshtml";
+}
+<div class="container m-3">
+    <p>
+        @Html.ActionLink("Create New", "DthCreate", "null", new { @class = "btn btn-primary" })
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>@Html.DisplayNameFor(model => model.hinhAnh)</th>
+                <th>@Html.DisplayNameFor(model => model.tenSanPham)</th>
+                <th>@Html.DisplayNameFor(model => model.gia)</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.mauSac)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.soLuong)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.danhMuc.tenDanhMuc)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" name="select1"></td>
+                    <td>
+                        <img src="@Url.Content("~/Public/UpLoadImg/imgSanPham/"+item.hinhAnh)" alt="@item.tenSanPham" width="100" height="100" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tenSanPham)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mauSac)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soLuong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.danhMuc.tenDanhMuc)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "DthEdit", new { id = item.maSanPham }) |
+                        @Html.ActionLink("Details", "DthDetails", new { id = item.maSanPham }) |
+                        @Html.ActionLink("Delete", "DthDelete", new { id = item.maSanPham })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

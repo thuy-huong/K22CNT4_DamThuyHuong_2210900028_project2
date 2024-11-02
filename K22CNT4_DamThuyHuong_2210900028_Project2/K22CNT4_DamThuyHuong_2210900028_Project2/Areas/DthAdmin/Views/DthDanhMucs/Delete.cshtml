@@ -1,0 +1,63 @@
+﻿@model K22CNT4_DamThuyHuong_2210900028_Project2.Models.danhMuc
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/DthAdmin/Views/Shared/_layoutAdmin.cshtml";
+}
+
+<div class="container m-4" style="background: #fff;">
+
+    <h3>Bạn có chắc chắn muốn xóa cái này không?</h3>
+    <dl class="dl-horizontal row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.tenDanhMuc)
+        </dt>
+
+         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.tenDanhMuc)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.trangThai)
+        </dt>
+
+         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.trangThai)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ngayTao)
+        </dt>
+
+         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ngayTao)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ngayCapNhat)
+        </dt>
+
+         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ngayCapNhat)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.danhMuc2.tenDanhMuc)
+        </dt>
+
+         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.danhMuc2.tenDanhMuc)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-success" /> |
+            @Html.ActionLink("Back to List", "Index", "null", new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

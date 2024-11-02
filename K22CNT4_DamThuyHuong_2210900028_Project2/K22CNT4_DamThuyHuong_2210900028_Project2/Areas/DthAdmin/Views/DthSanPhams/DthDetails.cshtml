@@ -1,0 +1,108 @@
+﻿@model K22CNT4_DamThuyHuong_2210900028_Project2.Models.sanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/DthAdmin/Views/Shared/_layoutAdmin.cshtml";
+}
+
+
+<div class="container m-4" style="background: #fff;">
+    <div>
+        <h4 class="text-center">Chi tiết Sản phẩm</h4>
+        <hr />
+        <dl class="dl-horizontal row">
+            <dt class="col-sm-2">
+                Hình ảnh
+            </dt>
+            <dd class="col-sm-10">
+                <img src="@Url.Content("~/Public/UpLoadImg/imgSanPham/"+@Model.hinhAnh)" alt="@Model.tenSanPham" width="250" height="250" />
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.tenSanPham)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.tenSanPham)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.moTa)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.moTa)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.gia)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.gia)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.hinhAnh)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.hinhAnh)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.mauSac)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.mauSac)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.soLuong)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.soLuong)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.trangThai)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.trangThai)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.danhMuc.tenDanhMuc)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.danhMuc.tenDanhMuc)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ngayTao)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ngayTao)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ngayCapNhat)
+            </dt>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ngayCapNhat)
+            </dd>
+
+
+        </dl>
+
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "DthEdit", new { id = Model.maSanPham }, new { @class = "btn btn-success m-2" }) |
+        @Html.ActionLink("Back to List", "DthIndex", "null", new { @class = "btn btn-primary m-2" })
+    </p>
+
+</div>

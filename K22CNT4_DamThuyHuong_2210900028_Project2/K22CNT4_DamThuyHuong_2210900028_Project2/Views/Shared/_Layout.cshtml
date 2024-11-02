@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Public/cus/css/styles.css">
+    <link rel="stylesheet" href="~/Public/cus/css/flaticon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-light py-3 sticky-top" id="header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h1>Merzy</h1>
+            </div>
+            <nav class="navbar navbar-expand-lg">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Best seller</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="lipDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lip</a>
+                            <div class="dropdown-menu" aria-labelledby="lipDropdown">
+                                <a class="dropdown-item" href="#">Son Đỏ</a>
+                                <a class="dropdown-item" href="#">Son Hồng</a>
+                                <a class="dropdown-item" href="#">Son Cam</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="eyeDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Eye</a>
+                            <div class="dropdown-menu" aria-labelledby="eyeDropdown">
+                                <a class="dropdown-item" href="#">Mascara</a>
+                                <a class="dropdown-item" href="#">Kẻ Mắt</a>
+                                <a class="dropdown-item" href="#">Kính Lens</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#">Face</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="searchToggle">
+                                <i class="fa-solid fa-magnifying-glass" style="font-size: 20px;"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa-solid fa-cart-shopping" style="font-size: 20px;"></i><span class="badge badge-danger" id="cartCount">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa-solid fa-user" style="font-size: 20px;"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Thanh tìm kiếm -->
+    <div class="container mt-3" id="searchBar" style="display: none;">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">Tìm Kiếm</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-5">
+        @RenderBody()
+
+    </div>
+    <!-- Footer -->
+    <footer>
+            <div class="row">
+                <!-- Cột 1 -->
+                <div class="col-md-4">
+                    <h5 class="font-weight-bold text-uppercase" style="margin-left:10px;">CÔNG TY CỔ PHẦN THƯƠNG MẠI DỊCH VỤ UNICORN</h5>
+                    <p style="margin-left:10px;">Tầng 10, tòa nhà Dreamplex, số 195 Điện Biên Phủ, Phường 15, quận Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam</p>
+                    <p style="margin-left:10px;">Mã số thuế: 0315627066</p>
+                    <p style="margin-left:10px;">Giám đốc: Lê Minh Thảo</p>
+                    <p style="margin-left:10px;">Số điện thoại: 1900633023</p>
+                    <p style="margin-left:10px;">Email: <a href="mailto:sales.merzyvietnam@gmail.com">sales.merzyvietnam@gmail.com</a></p>
+                </div>
+
+                <!-- Cột 2 -->
+                <div class="col-md-4">
+                    <h5 class="font-weight-bold">Hỗ trợ khách hàng</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Phương Thức Thanh Toán</a></li>
+                        <li><a href="#">Chính sách giao hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Tìm kiếm</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Cột 3 -->
+                <div class="col-md-4">
+                    <h5 class="font-weight-bold">Giờ mở cửa</h5>
+                    <p>Từ 8:00 - 22:00 tất cả các ngày trong tuần (bao gồm cả các ngày lễ, ngày Tết).</p>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p><b>&copy; 2024 ĐÀM THÚY HƯỜNG</b></p>
+            </div>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Public/cus/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>
