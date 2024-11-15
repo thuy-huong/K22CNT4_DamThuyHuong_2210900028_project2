@@ -1,0 +1,111 @@
+﻿
+@using PagedList
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DamThuyHuong_K22CNT4_2210900028_project2.Models.danhMuc>
+@{
+    ViewBag.Title = "Danh Muc";
+    Layout = "~/Areas/DthAdmin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container m-3">
+
+    <p>
+        @Html.ActionLink("Create New", "Create", "null", new { @class = "btn btn-primary" })
+    </p>
+    <table>
+        <tr>
+            <th></th>
+            <th>
+                Tên danh mục
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Danh mục cha
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><input type="checkbox" name="select1"></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tenDanhMuc)
+                </td>
+                <td>
+                    @{ if (item.trangThai == true)
+                        {
+                            @:Hiển thị
+                        }
+                        else
+                        {
+                            @:Ẩn
+                        }}
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.danhMuc2.tenDanhMuc)
+                </td>
+                <td>
+                    <a class="text-primary" href="@Url.Action( "Edit", new { id = item.maDanhMuc })">
+                        <i class="fa-solid fa-pen-to-square" style="font-size: 20px;"></i>
+                    </a> |
+                    <a class="text-success" href="@Url.Action("Details", new { id = item.maDanhMuc })">
+                        <i class="fa-solid fa-eye" style="font-size: 20px;"></i>
+                    </a> |
+                    <a class="text-danger" href="@Url.Action("Delete", new { id = item.maDanhMuc })">
+                        <i class="fa-solid fa-trash" style="font-size: 20px;"></i>
+                    </a>
+                  
+                </td>
+            </tr>
+        }
+
+    </table>
+    <nav aria-label="Page navigation example" style="justify-content: center;">
+        <ul class="pagination">
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber - 1 })" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled"><span class="page-link" aria-hidden="true">&laquo;</span></li>
+            }
+
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                if (i == Model.PageNumber)
+                {
+                    <li class="page-item active"><span class="page-link">@i</span></li>
+                    ;
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                    </li>
+                }
+            }
+
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = Model.PageNumber + 1 })" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item disabled"><span class="page-link" aria-hidden="true">&raquo;</span></li>
+            }
+        </ul>
+    </nav>
+
+</div>

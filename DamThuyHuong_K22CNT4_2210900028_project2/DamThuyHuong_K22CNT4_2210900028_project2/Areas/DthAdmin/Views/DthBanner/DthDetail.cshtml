@@ -1,0 +1,90 @@
+﻿@model DamThuyHuong_K22CNT4_2210900028_project2.Models.khachHang
+
+@{
+    ViewBag.Title = "Khách hàng";
+    Layout = "~/Areas/DthAdmin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DthDetail</h2>
+
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenKhachHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenKhachHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.matKhau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matKhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayTao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayTao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngayCapNhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngayCapNhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhAnh)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.maKhachHang }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

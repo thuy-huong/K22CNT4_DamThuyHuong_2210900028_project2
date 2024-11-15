@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="login">
+
+    <div class="login-form">
+        <h2 class="text-center">Đăng ký</h2>
+        @using (Html.BeginForm("DthSignIn", "DthKhachHang", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <p class="text-danger">@TempData["error"] </p>
+            <div class="login_group">
+                <label for="username" class="form-label">Họ tên</label>
+                <input type="text" class="form_control_imput" id="username" placeholder="Nhập họ tên" name="tenKhachHang" required>
+            </div>
+            <div class="login_group">
+                <label for="username" class="form-label">Số điện thoại</label>
+                <input type="text" class="form_control_imput" id="username" placeholder="Nhập số điện" name="dienThoai" required>
+            </div>
+            <div class="login_group">
+                <label for="username" class="form-label">Địa chỉ</label>
+                <input type="text" class="form_control_imput" id="username" placeholder="Nhập địa chỉ" name="diaChi" required>
+            </div>
+            <div class="login_group">
+                <label for="username" class="form-label">Email</label>
+                <input type="email" class="form_control_imput" id="username" placeholder="Nhập email" name="email" required>
+            </div>
+
+            <div class="login_group">
+                <label for="password" class="form-label">Mật Khẩu</label>
+                <div style="position: relative;">
+                    <input type="password" class="form_control_imput" id="password" placeholder="Nhập mật khẩu" name="matKhau" required>
+                    <button type="submit" id="togglePassword" style="position: absolute; right: 10px; top: 10px; border: none; background: none; cursor: pointer;">
+                        Hiện
+                    </button>
+                </div>
+            </div>
+            <div class="login_group">
+                <label for="username" class="form-label">Hình ảnh</label>
+                <input type="file" class="form_control_imput" name="file" id="file">
+            </div>
+            <button type="submit" class="btn_login">Đăng ký</button>
+            <div class="text-center mt-3">
+                <a class="text-muted" href="@Url.Action("DthLogin","DthKhachHang" )">Đăng nhập</a>
+            </div>
+        }
+    </div>
+
+</div>

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DamThuyHuong_K22CNT4_2210900028_project2.ViewModels.danhMucChaConViewModel>
+
+<div class="col-md-3">
+    <div class="category-list">
+        <h4>Danh Mục</h4>
+
+        <ul class="list-group">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item parent-category">
+                    @*<a href="/DthSanPham/DthIndex/@item.DanhChaMuc.MaDanhMuc">
+            @item.DanhChaMuc.TenDanhMuc
+        </a>*@
+                    @Html.ActionLink(@item.DanhChaMuc.TenDanhMuc, "DthIndex", new { cate = item.DanhChaMuc.MaDanhMuc })
+                    <i class="fa-solid fa-plus icon-right" t></i>
+                </li>
+                if (@item.listDanhMucCon != null)
+                {
+                    <ul class="nested">
+                        @foreach (var x in @item.listDanhMucCon)
+                        {
+                            <li class="list-group-item"> @Html.ActionLink(x.TenDanhMuc, "DthIndex", new { cate = x.MaDanhMuc })</li>
+
+                        }
+                    </ul>
+                }
+            }
+        </ul>
+    </div>
+</div>

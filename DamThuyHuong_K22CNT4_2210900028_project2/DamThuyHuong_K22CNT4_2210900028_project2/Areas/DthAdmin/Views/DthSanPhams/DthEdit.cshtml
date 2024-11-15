@@ -1,0 +1,93 @@
+﻿@model DamThuyHuong_K22CNT4_2210900028_project2.Models.sanPham
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/DthAdmin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container m-3">
+    @using (Html.BeginForm("DthEdit", "DthSanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 class="text-center">Chỉnh sửa sản phẩm</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.maSanPham)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.tenSanPham, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tenSanPham, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tenSanPham, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.moTa, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <textarea name="moTa" id="mota" class="form-control">@Model.moTa</textarea>
+                    @Html.ValidationMessageFor(model => model.moTa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.gia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.gia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.gia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <input type="hidden" name="hinhAnh" value="@Model.hinhAnh" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.mauSac, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.mauSac, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.mauSac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.soLuong, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.maDanhMuc, "maDanhMuc", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("maDanhMuc", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.maDanhMuc, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.trangThai, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.trangThai)
+                        @Html.ValidationMessageFor(model => model.trangThai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="file">Hình ảnh:</label>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        <input type="file" name="file" id="file" style="width: 100%;" />
+                    </div>
+                    <img src="@Url.Content("~/Public/UpLoadImg/imgSanPham/"+Model.hinhAnh)" alt="@Model.tenSanPham" width="200" height="200" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save " class="btn btn-success" />|
+                    @Html.ActionLink("Back to List", "DthIndex", "null", new { @class = "btn btn-primary m-2" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

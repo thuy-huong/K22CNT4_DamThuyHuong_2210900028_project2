@@ -1,0 +1,13 @@
+﻿@model IEnumerable<DamThuyHuong_K22CNT4_2210900028_project2.ViewModels.danhMucChaConViewModel>
+@foreach (var item in Model)
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="@Url.Action("DthIndex","DthSanPham", new { id = item.DanhChaMuc.MaDanhMuc })" id="lipDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@item.DanhChaMuc.TenDanhMuc</a>
+        <div class="dropdown-menu" aria-labelledby="lipDropdown">
+            @foreach (var x in @item.listDanhMucCon)
+            {
+                <a class="dropdown-item" href="@Url.Action("DthIndex","DthSanPham", new { id = x.MaDanhMuc})">@x.TenDanhMuc</a>
+            }
+        </div>
+    </li>
+}

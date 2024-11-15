@@ -1,0 +1,77 @@
+﻿@model DamThuyHuong_K22CNT4_2210900028_project2.ViewModels.ChiTietDonHangVM
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/DthAdmin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container" style=" background-color: white">
+    <h1 class="text-center my-4">Chi Tiết Đơn Hàng</h1>
+
+    <div class="order-details">
+        <h3>Thông Tin Người Đặt</h3>
+        <p><strong>Tên:</strong>@Model.donHang.tenKhachHang</p>
+        <p><strong>Email:</strong> @Model.donHang.tenKhachHang</p>
+        <p><strong>Số điện thoại:</strong> @Model.donHang.dienthoai</p>
+        <p><strong>Địa chỉ giao hàng:</strong> @Model.donHang.diaChiGiaoHang</p>
+
+        <h3 class="mt-4">Danh Sách Sản Phẩm</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Sản Phẩm</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn Giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.listSanPham)
+                {
+                    var tongGia = item.gia * item.soLuong; // Tính tổng giá cho sản phẩm
+                    <tr>
+                        <td>@item.maSanPham</td>
+                        <td>@item.sanPham.tenSanPham</td>
+                        <td>@item.soLuong</td>
+                        <td>@item.gia.ToString("N0") VNĐ</td>
+                        <td>@tongGia.ToString("N0") VNĐ</td>
+                    </tr>
+
+                }
+
+            </tbody>
+            <tfoot>
+               
+                <tr>
+                    <td colspan="4" class="text-right"><strong>Tổng tiền hàng:</strong></td>
+                    <td><strong>@Model.listSanPham.Sum(p => p.gia * p.soLuong).ToString("N0") VND</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+        <h3 class="mt-4"></h3>
+        <p>
+            <strong>Phương Thức Thanh Toán:</strong>
+            @if (Model.donHang.phuongThucThanhToan == 1)
+            {
+                <span>Thanh toán khi nhận hàng (COD)</span>
+            }@if (Model.donHang.phuongThucThanhToan == 2)
+            {
+
+
+                <span>Thẻ tín dụng</span>
+            }
+            @if (Model.donHang.phuongThucThanhToan == 3)
+            {
+                <span>PayPal</span>
+            }
+        </p>
+        <p><strong>Phí Vận Chuyển:</strong> @Model.donHang.phiVanChuyen VNĐ</p>
+        <p><strong>Tổng thanh toán:</strong> @Model.donHang.tongTien.ToString("N0") VNĐ</p>
+    </div>
+
+    <div class="text-center my-4">
+        <button class="btn btn-primary" onclick="window.print();">In Đơn Hàng</button>
+        <a href="@Url.Action("DthIndex")" class="btn btn-secondary">Quay Lại</a>
+    </div>
+</div>
+

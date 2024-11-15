@@ -1,0 +1,152 @@
+﻿@model DamThuyHuong_K22CNT4_2210900028_project2.ViewModels.DetailsProductVM
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="image-container">
+    <h1>Chi tiết sản phẩm</h1>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Phần 1: Ảnh và Thông tin sản phẩm -->
+        <div class="col-md-6">
+            <div class="product-detail-image">
+                <img src="~/Public/UpLoadImg/imgSanPham/@Model.sanPham.hinhAnh" alt="Sản phẩm">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="product-detail">
+                <h1 class="product-detail-title">@Model.sanPham.tenSanPham</h1>
+                <div class="product-detail-price">@Model.sanPham.gia.ToString("N0") VND</div>
+                <div class="product-rating">
+                    ★★★★☆ <!-- Đánh giá 4 sao -->
+                </div>
+                <p class="product-detail-description">
+                    <b>Màu sắc: </b> @Model.sanPham.mauSac
+                </p>
+                <p class="product-detail-description">
+                    <b>Danh muc: </b> @Model.sanPham.danhMuc.tenDanhMuc
+                </p>
+                @using (Html.BeginForm("DthAddToCart", "DthCart", FormMethod.Post))
+                {
+                    <div class="quantity-control">
+                        <button type="button" class="quantity-button" onclick="changeQuantity('product1', -1)">&#8722;</button>
+                        <input type="number" id="product1" name="quantity" class="quantity-input" value="1" min="1" readonly />
+                        <button type="button" class="quantity-button" onclick="changeQuantity('product1', 1)">&#43;</button>
+                    </div>
+                    <input type="hidden" name="productId" value="@Model.sanPham.maSanPham" />
+                    <button type="submit" class="add-to-cart-detail">Thêm vào giỏ hàng</button>
+                }
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Phần 2: Tab mô tả và đánh giá -->
+    <div class="product-detail mt-4">
+        <ul class="nav nav-tabs" id="productTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Mô Tả Chi Tiết</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Đánh Giá</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="productTabContent">
+            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                <p>
+                    @Model.sanPham.moTa
+                </p>
+            </div>
+            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                @if (Model.danhGias.Any())
+                {
+                    foreach (var item in Model.danhGias)
+                    {
+                        <div class="review">
+                            <div class="review-header">
+                                <span class="reviewer-name">@item.khachHang.tenKhachHang</span>
+                                <span class="review-stars">
+                                    @{
+                                        // Lấy xếp hạng, mặc định là 0 nếu null
+                                        int xepHang = item.xepHang ?? 0;
+                                        // Hiển thị số sao dựa trên xếp hạng
+                                        var stars = new string('★', xepHang) + new string('☆', 5 - xepHang);
+                                        @Html.Raw(stars) // Sử dụng Html.Raw để hiển thị ký tự HTML
+                                    }
+                                </span>
+                            </div>
+                            <div class="review-content">
+                                <p>@item.binhLuan</p>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+                }
+                <!-- Nút Thêm Đánh Giá -->
+                <button id="addReviewButton" class="btn btn-primary">Thêm Đánh Giá</button>
+
+                <!-- Form Đánh Giá -->
+                <div id="reviewForm" class="review-form" style="display: none;">
+                    <h3>Đánh Giá Sản Phẩm</h3>
+                    @using (Html.BeginForm("DthAddDanhGia", "DthSanPham", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label for="comment">Nội Dung Bình Luận:</label>
+                            <textarea id="comment" name="binhLuan" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="xepHang">Số Sao Đánh Giá:</label>
+                            <select id="xepHang" name="xepHang" class="review-stars" required>
+
+                                <option value="1">★☆☆☆☆</option>
+                                <option value="2">★★☆☆☆</option>
+                                <option value="3">★★★☆☆</option>
+                                <option value="4">★★★★☆</option>
+                                <option value="5" selected>★★★★★</option>
+                            </select>
+                        </div>
+                        <input type="hidden" value="@Model.sanPham.maSanPham" name="maSanPham" />
+                        <button type="submit" class="btn btn-success">Gửi Đánh Giá</button>
+                        <button type="button" class="btn btn-secondary" id="cancelButton">Hủy</button>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts{
+    <script>
+       // Đánh giá
+    $('#addReviewButton').click(function () {
+        $('#reviewForm').show();
+    });
+
+    $('#cancelButton').click(function () {
+        $('#reviewForm').hide();
+    });
+
+    $('#reviewFormContent').submit(function (event) {
+        event.preventDefault(); // Ngăn chặn hành vi mặc định của form
+        const comment = $('#comment').val();
+        const rating = $('#rating').val();
+
+        // Xử lý dữ liệu đánh giá
+        console.log("Nội dung bình luận:", comment);
+        console.log("Số sao đánh giá:", rating);
+
+        // Đóng form sau khi gửi
+        $('#reviewForm').hide();
+        // Gửi dữ liệu tới server ở đây (nếu cần)
+    });
+    </script>
+}

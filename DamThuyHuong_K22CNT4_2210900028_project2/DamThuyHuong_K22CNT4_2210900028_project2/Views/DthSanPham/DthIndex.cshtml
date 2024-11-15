@@ -1,0 +1,126 @@
+﻿@using PagedList
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DamThuyHuong_K22CNT4_2210900028_project2.Models.sanPham>
+@{
+    ViewBag.Title = "DthIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+<div class="image-container">
+    <h1>Home</h1>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        @Html.Action("DanhMucMenu", "DthSanPham")
+        <div class="col-md-9">
+            <div class="sort-options">
+                <label for="sortSelect">Sắp xếp theo:</label>
+                <select id="sortSelect" class="custom-select" style="display: inline-block; width: auto;" onchange="sortProducts()">
+                    <option value="default">Mặc định</option>
+                    <option value="priceLow">Giá: Thấp đến Cao</option>
+                    <option value="priceHigh">Giá: Cao đến Thấp</option>
+                    <option value="nameDesc">Tên: Z đến A</option>
+                </select>
+            </div>
+            <div id="product-list" class="row">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col-md-4 product-i4">
+                            <div class="card">
+                                <div class="product-image">
+                                    <a href="@Url.Action("DthDetail", new { id = item.maSanPham })">
+                                        <img src="~/Public/UpLoadImg/imgSanPham/@item.hinhAnh" class="card-img-top" alt="@item.tenSanPham">
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <a href="@Url.Action("DthDetail", "DthSanPham", new { id = item.maSanPham })">
+                                        <h5 class="product-title">@item.tenSanPham</h5>
+                                        <p class="product-price text-bg-danger">@item.gia.ToString("N0") VND</p>
+                                    </a>
+                                    @using (Html.BeginForm("DthAddItem", "DthCart", FormMethod.Post))
+                                    {
+                                        <input type="hidden" value="@item.maSanPham" name="maSanPham" />
+                                        <input type="hidden" value="1" name="soLuong" />
+                                        <button type="submit" style="background-color: #ee589e; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; transition: background-color 0.2s, transform 0.2s;">Thêm vào giỏ hàng</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-12 text-center">
+                        <h5>Không tìm thấy sản phẩm nào.</h5>
+                    </div>
+                }
+
+                <nav aria-label="Page navigation example" style="width: 100%; display: flex; justify-content: center; ">
+                    <ul class="pagination">
+                        @if (Model.HasPreviousPage)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("DthIndex", new { page = Model.PageNumber - 1 })" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item disabled"><span class="page-link" aria-hidden="true">&laquo;</span></li>
+                        }
+
+                        @for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            if (i == Model.PageNumber)
+                            {
+                                <li class="page-item active"><span class="page-link">@i</span></li>
+                                ;
+                            }
+                            else
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("DthIndex", new { page = i })">@i</a>
+                                </li>
+                            }
+                        }
+
+                        @if (Model.HasNextPage)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("DthIndex", new { page = Model.PageNumber + 1 })" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item disabled"><span class="page-link" aria-hidden="true">&raquo;</span></li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        // Hiện/ẩn danh mục con
+        $('.parent-category').click(function () {
+            $(this).next('.nested').slideToggle();
+        });
+        function sortProducts() {
+        var sortValue = document.getElementById('sortSelect').value;
+        var url = '@Url.Action("DthIndex", "DthSanPham")';
+        var cate = '@ViewBag.cate'; // Thay thế bằng giá trị cate nếu cần
+        var page = 1; // Reset trang về 1 khi sắp xếp
+        window.location.href = url + '?cate=' + cate + '&page=' + page + '&sortOrder=' + sortValue;
+    }
+    </script>
+}
+
