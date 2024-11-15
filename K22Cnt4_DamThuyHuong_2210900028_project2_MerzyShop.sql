@@ -28,7 +28,7 @@ CREATE TABLE danhMuc(
 CREATE TABLE sanPham (
     maSanPham INT PRIMARY KEY IDENTITY(1,1),
     tenSanPham NVARCHAR(255) NOT NULL,
-    moTa NVARCHAR(255) NOT NULL,
+    moTa text NOT NULL,
     gia DECIMAL(10, 2) NOT NULL,
 	hinhAnh NVARCHAR(255),
     mauSac NVARCHAR(50),
